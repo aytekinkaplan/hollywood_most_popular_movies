@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollywood Movies</title>
+    <style>
+        body {
+            background-color: #292929; /* Koyu gri arka plan */
+            color: #ffffff; /* Beyaz metin rengi */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #ffffff; /* Tablo kenarlarına beyaz renkli çerçeve ekleme */
+        }
+
+        th, td {
+            border: 1px solid #dddddd; /* Hücre kenarlarında açık gri çizgiler */
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #444444; /* Koyu gri tablo başlıkları */
+            color: #ffffff; /* Beyaz tablo başlığı metni */
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Film Title</th>
+        <th>Release Year</th>
+        <th>Box Office (million USD)</th>
+        <th>Director</th>
+        <th>Lead Actor(s)</th>
+        <th>Genre(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.rank}"></td>
+        <td th:text="${movie.filmTitle}"></td>
+        <td th:text="${movie.releaseYear}"></td>
+        <td th:text="${movie.boxOffice}"></td>
+        <td th:text="${movie.director}"></td>
+        <td>
+            <span th:each="actor : ${movie.leadActors}" th:text="${actor} + ' '"></span>
+        </td>
+        <td>
+            <span th:each="genre : ${movie.genres}" th:text="${genre} + ' '"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
